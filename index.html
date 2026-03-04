@@ -2,19 +2,20 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>我的课程表 - 2025-2026学年第二学期</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>课程表 - 2025-2026学年第二学期</title>
 
     <!-- PWA Meta Tags -->
     <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
     <meta name="apple-mobile-web-app-title" content="课程表">
-    <meta name="theme-color" content="#667eea">
+    <meta name="theme-color" content="#FFFFFF">
+    <meta name="mobile-web-app-capable" content="yes">
 
     <!-- 字体 -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&family=Poppins:wght@400;600;700&family=Righteous&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
     <style>
         * {
@@ -24,91 +25,61 @@
         }
 
         :root {
-            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-            --accent-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-            --success-gradient: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
-            --warning-gradient: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
-            --bg-color: #f8f9fe;
-            --card-bg: #ffffff;
-            --text-primary: #2d3748;
-            --text-secondary: #718096;
-            --shadow-sm: 0 2px 4px rgba(0,0,0,0.06);
-            --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
-            --shadow-lg: 0 8px 24px rgba(0,0,0,0.12);
+            --bg-primary: #FAFAFA;
+            --bg-card: #FFFFFF;
+            --text-primary: #1A1A1A;
+            --text-secondary: #757575;
+            --text-tertiary: #BDBDBD;
+            --border-light: #F0F0F0;
+            --border-medium: #E0E0E0;
+
+            --color-blue: #4A90E2;
+            --color-purple: #9B59B6;
+            --color-pink: #E91E63;
+            --color-red: #F44336;
+            --color-orange: #FF9800;
+            --color-teal: #009688;
+            --color-green: #4CAF50;
+            --color-cyan: #00BCD4;
+            --color-indigo: #3F51B5;
+
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.04);
+            --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.08);
+
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 16px;
+            --radius-xl: 20px;
         }
 
         body {
-            font-family: 'Poppins', 'Noto Sans SC', sans-serif;
-            background: var(--bg-color);
+            font-family: 'Outfit', 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-primary);
             color: var(--text-primary);
             min-height: 100vh;
-            padding: 20px;
-            padding-bottom: 40px;
-            overflow-x: hidden;
+            padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
-        /* 背景装饰 */
-        .bg-decoration {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 0;
-            overflow: hidden;
-        }
-
-        .bg-decoration::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -20%;
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle, rgba(102, 126, 234, 0.15) 0%, transparent 70%);
-            border-radius: 50%;
-            animation: float 20s ease-in-out infinite;
-        }
-
-        .bg-decoration::after {
-            content: '';
-            position: absolute;
-            bottom: -30%;
-            left: -10%;
-            width: 500px;
-            height: 500px;
-            background: radial-gradient(circle, rgba(240, 147, 251, 0.12) 0%, transparent 70%);
-            border-radius: 50%;
-            animation: float 25s ease-in-out infinite reverse;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translate(0, 0) scale(1); }
-            33% { transform: translate(30px, -30px) scale(1.1); }
-            66% { transform: translate(-20px, 20px) scale(0.9); }
-        }
-
-        /* 主容器 */
         .container {
-            position: relative;
-            z-index: 1;
-            max-width: 1400px;
+            max-width: 1200px;
             margin: 0 auto;
+            padding: 16px;
         }
 
-        /* 标题区域 */
+        /* 顶部标题栏 */
         .header {
             text-align: center;
-            margin-bottom: 30px;
-            animation: fadeInDown 0.8s ease-out;
+            margin-bottom: 24px;
+            animation: fadeInDown 0.5s ease-out;
         }
 
         @keyframes fadeInDown {
             from {
                 opacity: 0;
-                transform: translateY(-30px);
+                transform: translateY(-20px);
             }
             to {
                 opacity: 1;
@@ -117,41 +88,37 @@
         }
 
         .header h1 {
-            font-family: 'Righteous', cursive;
-            font-size: clamp(1.8rem, 5vw, 3rem);
-            background: var(--primary-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 10px;
-            letter-spacing: 1px;
+            font-size: 28px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 6px;
+            letter-spacing: -0.5px;
         }
 
         .header .subtitle {
+            font-size: 14px;
             color: var(--text-secondary);
-            font-size: 0.95rem;
-            font-weight: 500;
+            font-weight: 400;
         }
 
-        /* 控制面板 */
-        .control-panel {
-            background: var(--card-bg);
-            border-radius: 20px;
-            padding: 20px;
-            margin-bottom: 24px;
-            box-shadow: var(--shadow-md);
+        /* 控制栏 */
+        .controls {
+            background: var(--bg-card);
+            border-radius: var(--radius-lg);
+            padding: 12px 16px;
+            margin-bottom: 16px;
             display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
-            justify-content: center;
             align-items: center;
-            animation: fadeInUp 0.8s ease-out 0.2s both;
+            justify-content: space-between;
+            gap: 12px;
+            box-shadow: var(--shadow-sm);
+            animation: fadeInUp 0.5s ease-out 0.1s both;
         }
 
         @keyframes fadeInUp {
             from {
                 opacity: 0;
-                transform: translateY(30px);
+                transform: translateY(20px);
             }
             to {
                 opacity: 1;
@@ -159,72 +126,99 @@
             }
         }
 
+        .week-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
         .week-toggle {
             display: flex;
-            background: #edf2f7;
-            border-radius: 12px;
-            padding: 4px;
-            gap: 4px;
+            background: var(--bg-primary);
+            border-radius: var(--radius-md);
+            padding: 3px;
+            gap: 3px;
         }
 
         .week-toggle button {
-            padding: 10px 24px;
+            padding: 8px 16px;
             border: none;
             background: transparent;
             color: var(--text-secondary);
-            font-size: 0.9rem;
-            font-weight: 600;
-            border-radius: 10px;
+            font-size: 13px;
+            font-weight: 500;
+            border-radius: var(--radius-sm);
             cursor: pointer;
-            transition: all 0.3s ease;
-            font-family: 'Poppins', sans-serif;
+            transition: all 0.2s ease;
+            font-family: inherit;
         }
 
         .week-toggle button.active {
-            background: var(--card-bg);
-            color: #667eea;
+            background: var(--bg-card);
+            color: var(--text-primary);
             box-shadow: var(--shadow-sm);
         }
 
         .current-time {
+            font-size: 13px;
             color: var(--text-secondary);
-            font-size: 0.85rem;
             font-weight: 500;
+            padding: 8px 12px;
+            background: var(--bg-primary);
+            border-radius: var(--radius-sm);
+        }
+
+        .actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        .btn {
             padding: 8px 16px;
-            background: #f7fafc;
-            border-radius: 10px;
-        }
-
-        .edit-btn {
-            padding: 10px 20px;
-            background: var(--primary-gradient);
-            color: white;
             border: none;
-            border-radius: 12px;
-            font-size: 0.9rem;
-            font-weight: 600;
+            border-radius: var(--radius-md);
+            font-size: 13px;
+            font-weight: 500;
             cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: var(--shadow-sm);
+            transition: all 0.2s ease;
+            font-family: inherit;
+            display: flex;
+            align-items: center;
+            gap: 6px;
         }
 
-        .edit-btn:hover {
-            transform: translateY(-2px);
+        .btn-primary {
+            background: var(--text-primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            opacity: 0.9;
+            transform: translateY(-1px);
+        }
+
+        .btn-ghost {
+            background: transparent;
+            color: var(--text-secondary);
+        }
+
+        .btn-ghost:hover {
+            background: var(--bg-primary);
+        }
+
+        /* 课程表容器 */
+        .schedule-container {
+            background: var(--bg-card);
+            border-radius: var(--radius-xl);
+            padding: 16px;
             box-shadow: var(--shadow-md);
+            animation: fadeInUp 0.5s ease-out 0.2s both;
+            overflow: hidden;
         }
 
-        .edit-btn:active {
-            transform: translateY(0);
-        }
-
-        /* 课程表主体 */
         .schedule-wrapper {
-            background: var(--card-bg);
-            border-radius: 24px;
-            padding: 24px;
-            box-shadow: var(--shadow-lg);
-            animation: fadeInUp 0.8s ease-out 0.4s both;
             overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
         }
 
         .schedule-table {
@@ -234,90 +228,75 @@
             min-width: 900px;
         }
 
-        .schedule-table th,
-        .schedule-table td {
+        .schedule-table thead th {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-secondary);
             padding: 12px 8px;
             text-align: center;
-            border-bottom: 1px solid #edf2f7;
-            position: relative;
+            border-bottom: 1px solid var(--border-light);
+            white-space: nowrap;
         }
 
-        .schedule-table thead th {
-            font-family: 'Righteous', cursive;
-            font-size: 1.1rem;
-            font-weight: 400;
-            color: var(--text-primary);
-            padding: 16px 8px;
-            position: sticky;
-            top: 0;
-            background: var(--card-bg);
-            z-index: 10;
+        .schedule-table thead th.today {
+            color: var(--color-blue);
         }
 
-        .schedule-table thead th:first-child {
-            border-radius: 12px 0 0 0;
+        .schedule-table tbody td {
+            padding: 6px;
+            border-bottom: 1px solid var(--border-light);
+            border-right: 1px solid var(--border-light);
+            vertical-align: top;
+            width: 13.5%;
         }
 
-        .schedule-table thead th:last-child {
-            border-radius: 0 12px 0 0;
+        .schedule-table tbody td:last-child {
+            border-right: none;
         }
 
         .schedule-table tbody tr:last-child td {
             border-bottom: none;
         }
 
-        .schedule-table tbody tr:last-child td:first-child {
-            border-radius: 0 0 0 12px;
-        }
-
-        .schedule-table tbody tr:last-child td:last-child {
-            border-radius: 0 0 12px 0;
-        }
-
         /* 时间列 */
-        .time-slot {
-            font-weight: 600;
+        .time-cell {
+            width: 60px;
+            padding: 8px 4px;
+            text-align: center;
+            background: var(--bg-primary);
+            font-size: 11px;
+            font-weight: 500;
             color: var(--text-secondary);
-            font-size: 0.85rem;
-            width: 80px;
-            background: #f7fafc;
+            vertical-align: middle;
         }
 
-        /* 当前时间高亮 */
-        .time-slot.current {
-            background: linear-gradient(135deg, rgba(102, 126, 234, 0.15) 0%, rgba(118, 75, 162, 0.15) 100%);
-            color: #667eea;
-            font-weight: 700;
+        .time-cell.now {
+            background: linear-gradient(135deg, var(--color-blue), #5BA3F5);
+            color: white;
+            border-radius: var(--radius-sm);
+        }
+
+        /* 当前时间指示线 */
+        .today-column {
+            background: rgba(74, 144, 226, 0.02);
         }
 
         /* 课程卡片 */
         .course-card {
+            background: var(--bg-card);
+            border-radius: var(--radius-md);
             padding: 10px 12px;
-            border-radius: 14px;
-            min-height: 70px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            gap: 4px;
-            transition: all 0.3s ease;
+            margin-bottom: 6px;
+            border-left: 3px solid;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.2s ease;
             cursor: pointer;
             position: relative;
             overflow: hidden;
         }
 
-        .course-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 4px;
-            height: 100%;
-            background: rgba(255, 255, 255, 0.5);
-            border-radius: 14px 0 0 14px;
-        }
-
         .course-card:hover {
-            transform: scale(1.03);
+            transform: translateX(2px);
             box-shadow: var(--shadow-md);
         }
 
@@ -326,91 +305,112 @@
         }
 
         .course-card.current {
-            animation: pulse 2s ease-in-out infinite;
-            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.3);
+            background: linear-gradient(135deg, rgba(74, 144, 226, 0.08), rgba(91, 163, 245, 0.08));
+            box-shadow: 0 0 0 2px var(--color-blue);
         }
 
-        @keyframes pulse {
-            0%, 100% { box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.3); }
-            50% { box-shadow: 0 0 0 6px rgba(102, 126, 234, 0.1); }
+        .course-card.current::before {
+            content: '正在上课';
+            position: absolute;
+            top: 6px;
+            right: 6px;
+            font-size: 9px;
+            font-weight: 600;
+            color: var(--color-blue);
+            padding: 2px 6px;
+            background: rgba(74, 144, 226, 0.1);
+            border-radius: 4px;
         }
 
         .course-name {
+            font-size: 13px;
             font-weight: 600;
-            font-size: 0.95rem;
-            color: white;
-            line-height: 1.3;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+            line-height: 1.4;
         }
 
-        .course-location,
-        .course-week-type {
-            font-size: 0.75rem;
-            color: rgba(255, 255, 255, 0.85);
+        .course-location {
+            font-size: 11px;
+            color: var(--text-secondary);
+            margin-bottom: 4px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
         }
 
-        /* 空课程格 */
-        .empty-slot {
-            background: #f7fafc;
-            border-radius: 14px;
-            min-height: 70px;
-            cursor: pointer;
-            transition: all 0.3s ease;
+        .course-location::before {
+            content: '📍';
+            font-size: 10px;
+        }
+
+        .course-weeks {
+            font-size: 10px;
+            color: var(--text-tertiary);
+        }
+
+        /* 课程颜色 */
+        .course-card.color-blue { border-left-color: var(--color-blue); }
+        .course-card.color-purple { border-left-color: var(--color-purple); }
+        .course-card.color-pink { border-left-color: var(--color-pink); }
+        .course-card.color-red { border-left-color: var(--color-red); }
+        .course-card.color-orange { border-left-color: var(--color-orange); }
+        .course-card.color-teal { border-left-color: var(--color-teal); }
+        .course-card.color-green { border-left-color: var(--color-green); }
+        .course-card.color-cyan { border-left-color: var(--color-cyan); }
+        .course-card.color-indigo { border-left-color: var(--color-indigo); }
+
+        /* 空白格子 */
+        .empty-cell {
+            min-height: 60px;
+            border-radius: var(--radius-md);
+            background: var(--bg-primary);
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #cbd5e0;
-            font-size: 1.5rem;
+            color: var(--text-tertiary);
+            font-size: 20px;
+            cursor: pointer;
+            transition: all 0.2s ease;
         }
 
-        .empty-slot:hover {
-            background: #edf2f7;
-            color: #a0aec0;
+        .empty-cell:hover {
+            background: var(--border-light);
+            color: var(--text-secondary);
         }
 
-        /* 颜色变体 */
-        .course-blue {
-            background: var(--primary-gradient);
+        /* 编辑模式 */
+        .editing .course-card {
+            cursor: move;
         }
 
-        .course-pink {
-            background: var(--secondary-gradient);
+        .editing .course-card::after {
+            content: '✏️';
+            position: absolute;
+            top: 6px;
+            right: 6px;
+            font-size: 11px;
         }
 
-        .course-cyan {
-            background: var(--accent-gradient);
-        }
-
-        .course-green {
-            background: var(--success-gradient);
-        }
-
-        .course-orange {
-            background: var(--warning-gradient);
-        }
-
-        .course-purple {
-            background: linear-gradient(135deg, #a855f7 0%, #6366f1 100%);
-        }
-
-        /* 编辑模态框 */
-        .modal {
+        /* 模态框 */
+        .modal-overlay {
             display: none;
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.5);
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(4px);
             z-index: 1000;
             align-items: center;
             justify-content: center;
             padding: 20px;
-            backdrop-filter: blur(4px);
+            animation: fadeIn 0.2s ease-out;
         }
 
-        .modal.active {
+        .modal-overlay.active {
             display: flex;
-            animation: fadeIn 0.3s ease-out;
         }
 
         @keyframes fadeIn {
@@ -418,12 +418,12 @@
             to { opacity: 1; }
         }
 
-        .modal-content {
-            background: var(--card-bg);
-            border-radius: 24px;
-            padding: 30px;
+        .modal {
+            background: var(--bg-card);
+            border-radius: var(--radius-xl);
+            padding: 24px;
             width: 100%;
-            max-width: 500px;
+            max-width: 420px;
             box-shadow: var(--shadow-lg);
             animation: slideUp 0.3s ease-out;
         }
@@ -431,11 +431,11 @@
         @keyframes slideUp {
             from {
                 opacity: 0;
-                transform: translateY(30px);
+                transform: translateY(30px) scale(0.95);
             }
             to {
                 opacity: 1;
-                transform: translateY(0);
+                transform: translateY(0) scale(1);
             }
         }
 
@@ -443,80 +443,76 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 24px;
+            margin-bottom: 20px;
         }
 
         .modal-header h2 {
-            font-family: 'Righteous', cursive;
-            font-size: 1.5rem;
-            background: var(--primary-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--text-primary);
         }
 
-        .close-btn {
-            background: #edf2f7;
+        .modal-close {
+            width: 32px;
+            height: 32px;
             border: none;
-            width: 36px;
-            height: 36px;
+            background: var(--bg-primary);
             border-radius: 50%;
-            font-size: 1.2rem;
+            font-size: 18px;
             cursor: pointer;
-            transition: all 0.3s ease;
             display: flex;
             align-items: center;
             justify-content: center;
+            transition: all 0.2s ease;
         }
 
-        .close-btn:hover {
-            background: #e2e8f0;
-            transform: rotate(90deg);
+        .modal-close:hover {
+            background: var(--border-light);
         }
 
         .form-group {
-            margin-bottom: 20px;
+            margin-bottom: 16px;
         }
 
         .form-group label {
             display: block;
-            margin-bottom: 8px;
-            font-weight: 600;
+            font-size: 13px;
+            font-weight: 500;
             color: var(--text-primary);
-            font-size: 0.9rem;
+            margin-bottom: 6px;
         }
 
         .form-group input,
         .form-group select {
             width: 100%;
-            padding: 12px 16px;
-            border: 2px solid #e2e8f0;
-            border-radius: 12px;
-            font-size: 1rem;
-            font-family: 'Poppins', sans-serif;
-            transition: all 0.3s ease;
+            padding: 10px 12px;
+            border: 1px solid var(--border-medium);
+            border-radius: var(--radius-md);
+            font-size: 14px;
+            font-family: inherit;
+            transition: all 0.2s ease;
         }
 
         .form-group input:focus,
         .form-group select:focus {
             outline: none;
-            border-color: #667eea;
-            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+            border-color: var(--color-blue);
+            box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.1);
         }
 
-        .color-options {
+        .color-picker {
             display: flex;
-            gap: 10px;
+            gap: 8px;
             flex-wrap: wrap;
         }
 
         .color-option {
-            width: 40px;
-            height: 40px;
-            border-radius: 10px;
+            width: 36px;
+            height: 36px;
+            border-radius: var(--radius-md);
             cursor: pointer;
-            transition: all 0.3s ease;
-            border: 3px solid transparent;
+            border: 2px solid transparent;
+            transition: all 0.2s ease;
         }
 
         .color-option:hover {
@@ -524,194 +520,183 @@
         }
 
         .color-option.selected {
-            border-color: #2d3748;
-            transform: scale(1.1);
+            border-color: var(--text-primary);
         }
 
         .modal-actions {
             display: flex;
-            gap: 12px;
-            margin-top: 28px;
+            gap: 10px;
+            margin-top: 24px;
         }
 
-        .btn {
+        .modal-actions .btn {
             flex: 1;
-            padding: 14px;
-            border: none;
-            border-radius: 12px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-family: 'Poppins', sans-serif;
-        }
-
-        .btn-primary {
-            background: var(--primary-gradient);
-            color: white;
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-md);
+            justify-content: center;
+            padding: 12px;
         }
 
         .btn-secondary {
-            background: #edf2f7;
+            background: var(--bg-primary);
             color: var(--text-primary);
         }
 
-        .btn-secondary:hover {
-            background: #e2e8f0;
-        }
-
         .btn-danger {
-            background: var(--warning-gradient);
+            background: var(--color-red);
             color: white;
         }
 
-        .btn-danger:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-md);
-        }
-
-        /* 云同步设置 */
-        .sync-setup-btn {
-            padding: 10px 20px;
-            background: var(--accent-gradient);
-            color: white;
-            border: none;
-            border-radius: 12px;
-            font-size: 0.9rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: var(--shadow-sm);
-        }
-
-        .sync-setup-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-md);
-        }
-
+        /* 云同步状态 */
         .sync-status {
-            padding: 8px 16px;
-            border-radius: 10px;
-            font-size: 0.85rem;
-            font-weight: 500;
+            font-size: 12px;
+            color: var(--text-secondary);
+            padding: 6px 12px;
+            background: var(--bg-primary);
+            border-radius: var(--radius-sm);
             display: flex;
             align-items: center;
             gap: 6px;
         }
 
         .sync-status.synced {
-            background: rgba(67, 233, 123, 0.15);
-            color: #38a169;
+            color: var(--color-green);
         }
 
         .sync-status.unsynced {
-            background: rgba(250, 112, 154, 0.15);
-            color: #e53e3e;
-        }
-
-        .sync-status.syncing {
-            background: rgba(102, 126, 234, 0.15);
-            color: #667eea;
+            color: var(--color-red);
         }
 
         /* 响应式 */
         @media (max-width: 768px) {
-            body {
+            .container {
                 padding: 12px;
             }
 
             .header h1 {
-                font-size: 1.8rem;
+                font-size: 24px;
             }
 
-            .control-panel {
-                flex-direction: column;
-                padding: 16px;
+            .controls {
+                flex-wrap: wrap;
+                padding: 10px 12px;
             }
 
-            .schedule-wrapper {
+            .week-info {
+                width: 100%;
+                justify-content: space-between;
+            }
+
+            .actions {
+                width: 100%;
+            }
+
+            .btn {
+                flex: 1;
+                justify-content: center;
+            }
+
+            .schedule-container {
                 padding: 12px;
             }
 
-            .schedule-table th,
-            .schedule-table td {
-                padding: 8px 4px;
-                font-size: 0.8rem;
+            .schedule-table thead th,
+            .schedule-table tbody td {
+                padding: 4px;
+            }
+
+            .course-card {
+                padding: 8px 10px;
             }
 
             .course-name {
-                font-size: 0.85rem;
+                font-size: 12px;
             }
 
             .course-location,
-            .course-week-type {
-                font-size: 0.7rem;
+            .course-weeks {
+                font-size: 10px;
             }
+        }
+
+        /* 空状态 */
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: var(--text-secondary);
+        }
+
+        .empty-state-icon {
+            font-size: 48px;
+            margin-bottom: 16px;
+            opacity: 0.5;
+        }
+
+        .empty-state-text {
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+
+        .empty-state-sub {
+            font-size: 12px;
+            color: var(--text-tertiary);
         }
     </style>
 </head>
 <body>
-    <div class="bg-decoration"></div>
-
     <div class="container">
         <!-- 标题 -->
         <div class="header">
-            <h1>📚 我的课程表</h1>
-            <p class="subtitle">2025-2026学年 第二学期</p>
+            <h1>课程表</h1>
+            <p class="subtitle">2025-2026学年 第二学期 · 杨秋实</p>
         </div>
 
-        <!-- 控制面板 -->
-        <div class="control-panel">
-            <div class="week-toggle">
-                <button class="week-btn active" data-week="odd">单周</button>
-                <button class="week-btn" data-week="even">双周</button>
+        <!-- 控制栏 -->
+        <div class="controls">
+            <div class="week-info">
+                <div class="week-toggle">
+                    <button class="week-btn active" data-week="odd">单周</button>
+                    <button class="week-btn" data-week="even">双周</button>
+                </div>
+                <div class="current-time" id="currentTime">
+                    加载中...
+                </div>
             </div>
 
-            <div class="current-time" id="currentTime">
-                第 1 周 · 周一
-            </div>
-
-            <button class="edit-btn" onclick="toggleEditMode()">✏️ 编辑课程</button>
-
-            <button class="sync-setup-btn" onclick="showSyncSetupModal()">☁️ 云同步设置</button>
-
-            <div class="sync-status synced" id="syncStatus">
-                <span>✓</span>
-                <span>已同步</span>
+            <div class="actions">
+                <button class="btn btn-ghost" onclick="showSyncSetup()">☁️</button>
+                <button class="btn btn-primary" onclick="toggleEditMode()">✏️ 编辑</button>
             </div>
         </div>
 
         <!-- 课程表 -->
-        <div class="schedule-wrapper">
-            <table class="schedule-table">
-                <thead>
-                    <tr>
-                        <th>时间</th>
-                        <th>周一</th>
-                        <th>周二</th>
-                        <th>周三</th>
-                        <th>周四</th>
-                        <th>周五</th>
-                    </tr>
-                </thead>
-                <tbody id="scheduleBody">
-                    <!-- 课程表内容由 JavaScript 生成 -->
-                </tbody>
-            </table>
+        <div class="schedule-container">
+            <div class="schedule-wrapper">
+                <table class="schedule-table">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th data-day="1">周一</th>
+                            <th data-day="2">周二</th>
+                            <th data-day="3">周三</th>
+                            <th data-day="4">周四</th>
+                            <th data-day="5">周五</th>
+                            <th data-day="6">周六</th>
+                            <th data-day="7">周日</th>
+                        </tr>
+                    </thead>
+                    <tbody id="scheduleBody">
+                        <!-- 由 JavaScript 生成 -->
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 
-    <!-- 编辑/添加课程模态框 -->
-    <div class="modal" id="courseModal">
-        <div class="modal-content">
+    <!-- 课程编辑模态框 -->
+    <div class="modal-overlay" id="courseModal">
+        <div class="modal">
             <div class="modal-header">
                 <h2 id="modalTitle">添加课程</h2>
-                <button class="close-btn" onclick="closeModal()">&times;</button>
+                <button class="modal-close" onclick="closeModal()">&times;</button>
             </div>
 
             <form id="courseForm" onsubmit="saveCourse(event)">
@@ -719,12 +704,12 @@
 
                 <div class="form-group">
                     <label>课程名称</label>
-                    <input type="text" id="courseName" required placeholder="例：高等数学">
+                    <input type="text" id="courseName" required placeholder="例如：高等数学">
                 </div>
 
                 <div class="form-group">
-                    <label>教室位置</label>
-                    <input type="text" id="courseLocation" placeholder="例：3-101">
+                    <label>上课地点</label>
+                    <input type="text" id="courseLocation" placeholder="例如：3-101">
                 </div>
 
                 <div class="form-group">
@@ -735,6 +720,8 @@
                         <option value="3">周三</option>
                         <option value="4">周四</option>
                         <option value="5">周五</option>
+                        <option value="6">周六</option>
+                        <option value="7">周日</option>
                     </select>
                 </div>
 
@@ -742,54 +729,65 @@
                     <label>节次</label>
                     <select id="coursePeriod" required>
                         <option value="1">第1-2节</option>
-                        <option value="2">第3-5节</option>
-                        <option value="3">第6-7节</option>
+                        <option value="2">第3-4节</option>
+                        <option value="3">第5-6节</option>
+                        <option value="4">第7-8节</option>
+                        <option value="5">第9-10节</option>
+                        <option value="6">第11-12节</option>
                     </select>
                 </div>
 
                 <div class="form-group">
+                    <label>周数范围</label>
+                    <input type="text" id="courseWeeks" placeholder="例如：1-18周 或 12-15周">
+                </div>
+
+                <div class="form-group">
                     <label>周类型</label>
-                    <select id="courseWeekType" required>
+                    <select id="courseWeekType">
                         <option value="all">每周</option>
-                        <option value="odd">单周</option>
-                        <option value="even">双周</option>
+                        <option value="odd">仅单周</option>
+                        <option value="even">仅双周</option>
                     </select>
                 </div>
 
                 <div class="form-group">
                     <label>卡片颜色</label>
-                    <div class="color-options">
-                        <div class="color-option selected" data-color="blue" style="background: var(--primary-gradient)"></div>
-                        <div class="color-option" data-color="pink" style="background: var(--secondary-gradient)"></div>
-                        <div class="color-option" data-color="cyan" style="background: var(--accent-gradient)"></div>
-                        <div class="color-option" data-color="green" style="background: var(--success-gradient)"></div>
-                        <div class="color-option" data-color="orange" style="background: var(--warning-gradient)"></div>
-                        <div class="color-option" data-color="purple" style="background: linear-gradient(135deg, #a855f7 0%, #6366f1 100%)"></div>
+                    <div class="color-picker">
+                        <div class="color-option selected" data-color="blue" style="background: var(--color-blue)"></div>
+                        <div class="color-option" data-color="purple" style="background: var(--color-purple)"></div>
+                        <div class="color-option" data-color="pink" style="background: var(--color-pink)"></div>
+                        <div class="color-option" data-color="red" style="background: var(--color-red)"></div>
+                        <div class="color-option" data-color="orange" style="background: var(--color-orange)"></div>
+                        <div class="color-option" data-color="teal" style="background: var(--color-teal)"></div>
+                        <div class="color-option" data-color="green" style="background: var(--color-green)"></div>
+                        <div class="color-option" data-color="cyan" style="background: var(--color-cyan)"></div>
+                        <div class="color-option" data-color="indigo" style="background: var(--color-indigo)"></div>
                     </div>
                 </div>
 
                 <div class="modal-actions">
-                    <button type="button" class="btn btn-danger" id="deleteBtn" onclick="deleteCourse()" style="display: none;">删除课程</button>
+                    <button type="button" class="btn btn-danger" id="deleteBtn" onclick="deleteCourse()" style="display: none;">删除</button>
                     <button type="button" class="btn btn-secondary" onclick="closeModal()">取消</button>
-                    <button type="submit" class="btn btn-primary">保存课程</button>
+                    <button type="submit" class="btn btn-primary">保存</button>
                 </div>
             </form>
         </div>
     </div>
 
     <!-- 云同步设置模态框 -->
-    <div class="modal" id="syncModal">
-        <div class="modal-content">
+    <div class="modal-overlay" id="syncModal">
+        <div class="modal">
             <div class="modal-header">
                 <h2>云同步设置</h2>
-                <button class="close-btn" onclick="closeSyncModal()">&times;</button>
+                <button class="modal-close" onclick="closeSyncModal()">&times;</button>
             </div>
 
             <div class="form-group">
                 <label>JSONBin.io API 密钥</label>
                 <input type="text" id="syncApiKey" placeholder="粘贴你的 API 密钥">
-                <small style="color: var(--text-secondary); display: block; margin-top: 8px;">
-                    获取方式：访问 <a href="https://jsonbin.io" target="_blank">https://jsonbin.io</a> 注册并创建 API 密钥
+                <small style="color: var(--text-secondary); display: block; margin-top: 6px; font-size: 11px;">
+                    访问 <a href="https://jsonbin.io" target="_blank" style="color: var(--color-blue);">jsonbin.io</a> 注册并获取密钥
                 </small>
             </div>
 
@@ -800,82 +798,67 @@
 
             <div class="modal-actions">
                 <button type="button" class="btn btn-secondary" onclick="closeSyncModal()">取消</button>
-                <button type="button" class="btn btn-primary" onclick="saveSyncSettings()">保存设置</button>
+                <button type="button" class="btn btn-primary" onclick="saveSyncSettings()">保存</button>
             </div>
         </div>
     </div>
 
     <script>
-        // 初始课程数据（从PDF提取）
+        // 课程数据（杨秋实的课表）
         const defaultCourses = [
-            // 周一
-            { id: 1, name: '高等数学', location: '3-101', day: 1, period: 1, weekType: 'odd', color: 'blue' },
-            { id: 2, name: '大学英语', location: '7-301', day: 1, period: 2, weekType: 'all', color: 'pink' },
-            { id: 3, name: '工程制图', location: '3-303', day: 1, period: 3, weekType: 'all', color: 'cyan' },
-
-            // 周二
-            { id: 4, name: '线性代数', location: '3-101', day: 2, period: 1, weekType: 'all', color: 'green' },
-            { id: 5, name: '中国近代史纲要', location: '5-413', day: 2, period: 2, weekType: 'all', color: 'orange' },
-            { id: 6, name: '体育', location: '田径场', day: 2, period: 3, weekType: 'all', color: 'purple' },
-
-            // 周三
-            { id: 7, name: '工程制图', location: '3-501', day: 3, period: 1, weekType: 'all', color: 'cyan' },
-            { id: 8, name: '高等数学', location: '3-101', day: 3, period: 2, weekType: 'all', color: 'blue' },
-            { id: 9, name: '大学英语', location: '7-403', day: 3, period: 3, weekType: 'all', color: 'pink' },
-
-            // 周四
-            { id: 10, name: '工程制图', location: '机房', day: 4, period: 1, weekType: 'all', color: 'cyan' },
-            { id: 11, name: '线性代数', location: '3-101', day: 4, period: 2, weekType: 'all', color: 'green' },
-            { id: 12, name: '形势与政策', location: '5-513', day: 4, period: 3, weekType: 'even', color: 'orange' },
-
-            // 周五
-            { id: 13, name: '高等数学', location: '3-101', day: 5, period: 1, weekType: 'all', color: 'blue' },
-            { id: 14, name: '大学英语', location: '7-403', day: 5, period: 2, weekType: 'all', color: 'pink' }
+            { id: 1, name: '基层治理现代化问题研究', location: '东6-C502', day: 1, period: 2, weeks: '1-18周', weekType: 'all', color: 'blue' },
+            { id: 2, name: '当代中国政治制度', location: '东6-C502', day: 2, period: 2, weeks: '1-18周', weekType: 'all', color: 'purple' },
+            { id: 3, name: '形势与政策（四）', location: '东6-C301', day: 2, period: 4, weeks: '12-15周', weekType: 'all', color: 'red' },
+            { id: 4, name: '大学英语（四）', location: '东6-C502', day: 3, period: 1, weeks: '1-16周', weekType: 'all', color: 'teal' },
+            { id: 5, name: '公共体育（羽毛球2）', location: '东校羽毛球馆', day: 3, period: 2, weeks: '1-18周', weekType: 'all', color: 'green' },
+            { id: 6, name: '西方政治思想史', location: '东6-C502', day: 3, period: 3, weeks: '1-18周', weekType: 'all', color: 'orange' },
+            { id: 7, name: '公共组织学', location: '东6-C106', day: 3, period: 4, weeks: '1-18周', weekType: 'all', color: 'pink' },
+            { id: 8, name: '基层治理现代化问题研究', location: '东6-C301', day: 4, period: 1, weeks: '2-18周', weekType: 'even', color: 'blue' },
+            { id: 9, name: '当代中国政治制度', location: '东6-C502', day: 4, period: 2, weeks: '1-17周', weekType: 'odd', color: 'purple' },
+            { id: 10, name: '公共组织学', location: '东6-C502', day: 5, period: 1, weeks: '1-18周', weekType: 'all', color: 'pink' },
+            { id: 11, name: '习近平新时代中国特色社会主义思想概论', location: '东6-C301', day: 5, period: 2, weeks: '1-16周', weekType: 'all', color: 'red' },
+            { id: 12, name: '西方政治思想史', location: '东6-C502', day: 5, period: 3, weeks: '2-18周', weekType: 'even', color: 'orange' },
+            { id: 13, name: '创业基础', location: '东6-C301', day: 5, period: 4, weeks: '1-17周', weekType: 'odd', color: 'cyan' }
         ];
+
+        // 节次时间
+        const periodTimes = {
+            1: { start: '08:00', end: '09:40' },
+            2: { start: '10:00', end: '11:40' },
+            3: { start: '14:00', end: '15:40' },
+            4: { start: '16:00', end: '17:40' },
+            5: { start: '19:00', end: '20:40' },
+            6: { start: '21:00', end: '22:40' }
+        };
 
         // 全局状态
         let courses = [];
-        let currentWeekType = 'odd'; // odd 或 even
+        let currentWeekType = 'odd';
         let editMode = false;
+        let selectedColor = 'blue';
         let syncApiKey = localStorage.getItem('schedule_sync_api_key') || '';
         let syncBinId = localStorage.getItem('schedule_sync_bin_id') || '';
-        let nextId = 15;
-        let selectedColor = 'blue';
+        let nextId = 100;
 
-        // 时间配置
-        const periodTimes = {
-            1: { start: '08:00', end: '09:40' },
-            2: { start: '10:00', end: '12:20' },
-            3: { start: '14:00', end: '16:20' }
-        };
-
-        // 初始化应用
-        function initApp() {
-            // 加载课程数据
+        // 初始化
+        function init() {
             loadCourses();
-
-            // 渲染课程表
+            updateTime();
             renderSchedule();
-
-            // 更新时间显示
-            updateTimeDisplay();
-
-            // 设置事件监听
             setupEventListeners();
 
             // 自动同步
             if (syncApiKey && syncBinId) {
                 autoSync();
-                setInterval(autoSync, 5 * 60 * 1000); // 每5分钟同步一次
+                setInterval(autoSync, 5 * 60 * 1000);
             }
 
-            // 每分钟更新时间显示
-            setInterval(updateTimeDisplay, 60000);
+            setInterval(updateTime, 60000);
         }
 
-        // 加载课程数据
+        // 加载课程
         function loadCourses() {
-            const saved = localStorage.getItem('schedule_courses');
+            const saved = localStorage.getItem('class_schedule_courses');
             if (saved) {
                 courses = JSON.parse(saved);
                 nextId = Math.max(...courses.map(c => c.id), 0) + 1;
@@ -885,12 +868,40 @@
             }
         }
 
-        // 保存课程数据
+        // 保存课程
         function saveCourses() {
-            localStorage.setItem('schedule_courses', JSON.stringify(courses));
+            localStorage.setItem('class_schedule_courses', JSON.stringify(courses));
             if (syncApiKey && syncBinId) {
                 scheduleSync();
             }
+        }
+
+        // 更新时间显示
+        function updateTime() {
+            const now = new Date();
+            const startDate = new Date('2026-02-23'); // 开学日期
+            const diffTime = now.getTime() - startDate.getTime();
+            const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+            const currentWeek = Math.floor(diffDays / 7) + 1;
+            currentWeekType = currentWeek % 2 === 0 ? 'even' : 'odd';
+
+            const days = ['周日', '周一', '周二', '周三', '周四', '周五', '周六'];
+            const dayName = days[now.getDay()];
+
+            document.getElementById('currentTime').textContent = `第 ${currentWeek} 周 · ${dayName}`;
+
+            // 更新周次按钮
+            document.querySelectorAll('.week-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.week === currentWeekType);
+            });
+
+            // 高亮今天
+            const today = now.getDay();
+            document.querySelectorAll('[data-day]').forEach(th => {
+                th.classList.toggle('today', parseInt(th.dataset.day) === today);
+            });
+
+            renderSchedule();
         }
 
         // 渲染课程表
@@ -898,36 +909,40 @@
             const tbody = document.getElementById('scheduleBody');
             tbody.innerHTML = '';
 
-            for (let period = 1; period <= 3; period++) {
+            const now = new Date();
+            const today = now.getDay();
+            const currentHour = now.getHours();
+            const currentMinute = now.getMinutes();
+
+            for (let period = 1; period <= 6; period++) {
                 const tr = document.createElement('tr');
 
                 // 时间列
                 const timeTd = document.createElement('td');
-                timeTd.className = 'time-slot';
-                timeTd.textContent = `${periodTimes[period].start}\n${periodTimes[period].end}`;
+                timeTd.className = 'time-cell';
+                timeTd.innerHTML = `${periodTimes[period].start}<br>${periodTimes[period].end}`;
 
-                // 检查是否是当前时间段
-                const now = new Date();
-                const currentHour = now.getHours();
-                const currentMinute = now.getMinutes();
+                // 判断是否是当前时间
                 const [startHour, startMinute] = periodTimes[period].start.split(':').map(Number);
                 const [endHour, endMinute] = periodTimes[period].end.split(':').map(Number);
-
                 const currentMinutes = currentHour * 60 + currentMinute;
                 const startMinutes = startHour * 60 + startMinute;
                 const endMinutes = endHour * 60 + endMinute;
 
                 if (currentMinutes >= startMinutes && currentMinutes <= endMinutes) {
-                    timeTd.classList.add('current');
+                    timeTd.classList.add('now');
                 }
 
                 tr.appendChild(timeTd);
 
-                // 周一到周五
-                for (let day = 1; day <= 5; day++) {
+                // 周一到周日
+                for (let day = 1; day <= 7; day++) {
                     const td = document.createElement('td');
+                    if (day === today) {
+                        td.classList.add('today-column');
+                    }
 
-                    // 查找该时间段的课程
+                    // 查找课程
                     const course = courses.find(c =>
                         c.day === day &&
                         c.period === period &&
@@ -936,18 +951,17 @@
 
                     if (course) {
                         const div = document.createElement('div');
-                        div.className = `course-card course-${course.color}`;
+                        div.className = `course-card color-${course.color}`;
 
-                        // 检查是否是当前课程
-                        const today = now.getDay();
-                        if (today === day && timeTd.classList.contains('current')) {
+                        // 判断是否是当前课程
+                        if (day === today && timeTd.classList.contains('now')) {
                             div.classList.add('current');
                         }
 
                         div.innerHTML = `
                             <div class="course-name">${course.name}</div>
                             <div class="course-location">${course.location}</div>
-                            ${course.weekType !== 'all' ? `<div class="course-week-type">${course.weekType === 'odd' ? '单周' : '双周'}</div>` : ''}
+                            <div class="course-weeks">${course.weeks}${course.weekType !== 'all' ? (course.weekType === 'odd' · ' · 单周' : ' · 双周') : ''}</div>
                         `;
 
                         if (editMode) {
@@ -957,13 +971,11 @@
                         td.appendChild(div);
                     } else {
                         const emptyDiv = document.createElement('div');
-                        emptyDiv.className = 'empty-slot';
-                        emptyDiv.textContent = editMode ? '+' : '';
-
+                        emptyDiv.className = 'empty-cell';
                         if (editMode) {
+                            emptyDiv.textContent = '+';
                             emptyDiv.onclick = () => openAddModal(day, period);
                         }
-
                         td.appendChild(emptyDiv);
                     }
 
@@ -974,43 +986,14 @@
             }
         }
 
-        // 更新时间显示
-        function updateTimeDisplay() {
-            const now = new Date();
-
-            // 计算当前是第几周
-            const startDate = new Date('2026-02-23'); // 开学日期
-            const diffTime = now.getTime() - startDate.getTime();
-            const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
-            const currentWeek = Math.floor(diffDays / 7) + 1;
-
-            // 判断单双周
-            currentWeekType = currentWeek % 2 === 0 ? 'even' : 'odd';
-
-            // 获取星期几
-            const days = ['周日', '周一', '周二', '周三', '周四', '周五', '周六'];
-            const dayName = days[now.getDay()];
-
-            // 更新显示
-            document.getElementById('currentTime').textContent = `第 ${currentWeek} 周 · ${dayName}`;
-
-            // 更新单双周按钮状态
-            document.querySelectorAll('.week-btn').forEach(btn => {
-                btn.classList.toggle('active', btn.dataset.week === currentWeekType);
-            });
-
-            // 重新渲染课程表
-            renderSchedule();
-        }
-
         // 设置事件监听
         function setupEventListeners() {
-            // 单双周切换
+            // 周次切换
             document.querySelectorAll('.week-btn').forEach(btn => {
                 btn.addEventListener('click', () => {
+                    currentWeekType = btn.dataset.week;
                     document.querySelectorAll('.week-btn').forEach(b => b.classList.remove('active'));
                     btn.classList.add('active');
-                    currentWeekType = btn.dataset.week;
                     renderSchedule();
                 });
             });
@@ -1023,14 +1006,21 @@
                     selectedColor = option.dataset.color;
                 });
             });
+
+            // 编辑模式
+            document.body.addEventListener('click', (e) => {
+                if (editMode && !e.target.closest('.modal-overlay') && !e.target.closest('.course-card') && !e.target.closest('.empty-cell') && !e.target.closest('.btn')) {
+                    // 点击空白区域不退出编辑模式
+                }
+            });
         }
 
         // 切换编辑模式
         function toggleEditMode() {
             editMode = !editMode;
-            const btn = document.querySelector('.edit-btn');
-            btn.textContent = editMode ? '✓ 完成编辑' : '✏️ 编辑课程';
-            btn.style.background = editMode ? 'var(--success-gradient)' : 'var(--primary-gradient)';
+            document.body.classList.toggle('editing', editMode);
+            const btn = document.querySelector('.btn-primary');
+            btn.textContent = editMode ? '✓ 完成' : '✏️ 编辑';
             renderSchedule();
         }
 
@@ -1043,7 +1033,6 @@
             document.getElementById('coursePeriod').value = period;
             document.getElementById('deleteBtn').style.display = 'none';
 
-            // 重置颜色选择
             document.querySelectorAll('.color-option').forEach(o => o.classList.remove('selected'));
             document.querySelector('.color-option[data-color="blue"]').classList.add('selected');
             selectedColor = 'blue';
@@ -1059,10 +1048,10 @@
             document.getElementById('courseLocation').value = course.location;
             document.getElementById('courseDay').value = course.day;
             document.getElementById('coursePeriod').value = course.period;
+            document.getElementById('courseWeeks').value = course.weeks;
             document.getElementById('courseWeekType').value = course.weekType;
             document.getElementById('deleteBtn').style.display = 'block';
 
-            // 设置颜色
             document.querySelectorAll('.color-option').forEach(o => o.classList.remove('selected'));
             document.querySelector(`.color-option[data-color="${course.color}"]`).classList.add('selected');
             selectedColor = course.color;
@@ -1085,18 +1074,17 @@
                 location: document.getElementById('courseLocation').value,
                 day: parseInt(document.getElementById('courseDay').value),
                 period: parseInt(document.getElementById('coursePeriod').value),
+                weeks: document.getElementById('courseWeeks').value || '1-18周',
                 weekType: document.getElementById('courseWeekType').value,
                 color: selectedColor
             };
 
             if (courseId) {
-                // 编辑现有课程
                 const index = courses.findIndex(c => c.id === parseInt(courseId));
                 if (index !== -1) {
                     courses[index] = { ...courses[index], ...courseData };
                 }
             } else {
-                // 添加新课程
                 courses.push({ id: nextId++, ...courseData });
             }
 
@@ -1114,19 +1102,17 @@
             closeModal();
         }
 
-        // 显示云同步设置模态框
-        function showSyncSetupModal() {
+        // 云同步设置
+        function showSyncSetup() {
             document.getElementById('syncApiKey').value = syncApiKey;
             document.getElementById('syncBinId').value = syncBinId;
             document.getElementById('syncModal').classList.add('active');
         }
 
-        // 关闭云同步设置模态框
         function closeSyncModal() {
             document.getElementById('syncModal').classList.remove('active');
         }
 
-        // 保存云同步设置
         function saveSyncSettings() {
             syncApiKey = document.getElementById('syncApiKey').value.trim();
             const binIdInput = document.getElementById('syncBinId').value.trim();
@@ -1137,10 +1123,8 @@
                 if (binIdInput) {
                     syncBinId = binIdInput;
                     localStorage.setItem('schedule_sync_bin_id', syncBinId);
-                    // 立即同步
                     syncToCloud();
                 } else {
-                    // 创建新的 Bin
                     createNewBin();
                 }
             }
@@ -1148,142 +1132,82 @@
             closeSyncModal();
         }
 
-        // 创建新的数据 Bin
         async function createNewBin() {
             if (!syncApiKey) return;
 
-            updateSyncStatus('syncing');
-
             try {
-                const data = {
-                    courses: courses,
-                    lastUpdate: new Date().toISOString()
-                };
-
                 const response = await fetch('https://api.jsonbin.io/v3/b', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
                         'X-Master-Key': syncApiKey,
-                        'X-Bin-Name': 'class-schedule'
+                        'X-Bin-Name': 'class-schedule-2026'
                     },
-                    body: JSON.stringify(data)
+                    body: JSON.stringify({ courses, lastUpdate: new Date().toISOString() })
                 });
 
                 if (response.ok) {
                     const result = await response.json();
                     syncBinId = result.metadata.id;
                     localStorage.setItem('schedule_sync_bin_id', syncBinId);
-                    updateSyncStatus('synced');
-                } else {
-                    throw new Error('创建失败');
                 }
             } catch (error) {
-                console.error('创建数据 Bin 失败:', error);
-                updateSyncStatus('unsynced');
-                alert('云同步设置失败，请检查 API 密钥是否正确');
+                console.error('创建失败:', error);
             }
         }
 
-        // 同步到云端
         async function syncToCloud() {
             if (!syncApiKey || !syncBinId) return;
 
-            updateSyncStatus('syncing');
-
             try {
-                const data = {
-                    courses: courses,
-                    lastUpdate: new Date().toISOString()
-                };
-
-                const response = await fetch(`https://api.jsonbin.io/v3/b/${syncBinId}`, {
+                await fetch(`https://api.jsonbin.io/v3/b/${syncBinId}`, {
                     method: 'PUT',
                     headers: {
                         'Content-Type': 'application/json',
                         'X-Master-Key': syncApiKey
                     },
-                    body: JSON.stringify(data)
+                    body: JSON.stringify({ courses, lastUpdate: new Date().toISOString() })
                 });
-
-                if (response.ok) {
-                    updateSyncStatus('synced');
-                } else {
-                    throw new Error('同步失败');
-                }
             } catch (error) {
                 console.error('同步失败:', error);
-                updateSyncStatus('unsynced');
             }
         }
 
-        // 从云端同步
         async function syncFromCloud() {
             if (!syncApiKey || !syncBinId) return;
 
-            updateSyncStatus('syncing');
-
             try {
                 const response = await fetch(`https://api.jsonbin.io/v3/b/${syncBinId}/latest`, {
-                    headers: {
-                        'X-Master-Key': syncApiKey
-                    }
+                    headers: { 'X-Master-Key': syncApiKey }
                 });
 
                 if (response.ok) {
                     const result = await response.json();
-                    const data = result.record;
-
-                    if (data.courses && Array.isArray(data.courses)) {
-                        courses = data.courses;
+                    if (result.record.courses) {
+                        courses = result.record.courses;
                         saveCourses();
                         renderSchedule();
-                        updateSyncStatus('synced');
                     }
-                } else {
-                    throw new Error('获取数据失败');
                 }
             } catch (error) {
-                console.error('从云端同步失败:', error);
-                updateSyncStatus('unsynced');
+                console.error('同步失败:', error);
             }
         }
 
-        // 自动同步
         function autoSync() {
-            // 先从云端获取最新数据，然后再上传本地数据
             syncFromCloud().then(() => {
-                if (syncApiKey && syncBinId) {
-                    scheduleSync();
-                }
+                if (syncApiKey && syncBinId) syncToCloud();
             });
         }
 
-        // 延迟同步（避免频繁请求）
         let syncTimeout;
         function scheduleSync() {
             clearTimeout(syncTimeout);
-            syncTimeout = setTimeout(() => {
-                syncToCloud();
-            }, 1000);
+            syncTimeout = setTimeout(() => syncToCloud(), 1000);
         }
 
-        // 更新同步状态显示
-        function updateSyncStatus(status) {
-            const syncStatus = document.getElementById('syncStatus');
-            syncStatus.className = `sync-status ${status}`;
-
-            if (status === 'synced') {
-                syncStatus.innerHTML = '<span>✓</span><span>已同步</span>';
-            } else if (status === 'syncing') {
-                syncStatus.innerHTML = '<span>⟳</span><span>同步中...</span>';
-            } else {
-                syncStatus.innerHTML = '<span>✗</span><span>未同步</span>';
-            }
-        }
-
-        // 初始化
-        document.addEventListener('DOMContentLoaded', initApp);
+        // 启动
+        document.addEventListener('DOMContentLoaded', init);
     </script>
 </body>
 </html>
